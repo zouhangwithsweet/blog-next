@@ -20,30 +20,30 @@ isTop: false
 
 **鼓掌，开始薅**~
 
-<img src="/images/h0.jpg" width = "300" align=center />
+<!-- <img src="/images/h0.jpg" width = "300" align=center /> -->
 
 第一步，访问**leancloud.cn**  
-![](/images/h1.png)  
+<!-- ![](/images/h1.png)   -->
 点击右上角的直接访问控制台。**纳尼**！不用注册、登录之类的吗？别急，那是下一步。
 
 然后，注册，登录，基操。  
-![](/images/h2.png)  
+<!-- ![](/images/h2.png)   -->
 我们选gayhub作为登录账号，美滋滋。登录后就进去控制台了。  
-![](/images/h3.png)  
+<!-- ![](/images/h3.png)   -->
 看到这个快速入门没？**好的，我们不看**。直接创建新应用。  
-![](/images/h4.png)  
+<!-- ![](/images/h4.png)   -->
 起个名字`test-zz`，选择开发版，创建。  
-![](/images/h5.png)  
+<!-- ![](/images/h5.png)   -->
 看看这个`云引擎`三个字，多么亲切，点击进去。然后点击左侧菜单`部署`，熟悉的`git源码部署`  
-![](/images/h6.png)  
+<!-- ![](/images/h6.png)   -->
 点击进去，发现要配置`repo`，那就去`设置`菜单设置  
-![](/images/h7.png)  
+<!-- ![](/images/h7.png)   -->
 那我们进去部署`repo`，go  
-![](/images/h8.png)  
+<!-- ![](/images/h8.png)   -->
 哟呵，不就是`git`的地址，我们去把源码地址复制上去。顺便把这个`Deploy keys`配置到你git仓库，很皮。  
-![](/images/h9.png)  
+<!-- ![](/images/h9.png)   -->
 这里有个自定义变量，就是你的`express`或`koa`监听的端口，必须设置成`3000`，**重要**！
-![](/images/h10.png)  
+<!-- ![](/images/h10.png)   -->
 弄好之后，自定义你的注意域名。回到`部署`菜单，**部署**。
 
 **leancloud**优秀的地方在于就是能和**heroku**一样能自动识别你的后台语言。

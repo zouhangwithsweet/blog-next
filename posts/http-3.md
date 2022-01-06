@@ -15,7 +15,7 @@ Connection: keep-alive
 ```
 　　这个字段，请求头和响应头都有。目前，对于一般浏览器来说，对于同一个域名，大多数浏览器允许同时建立6个持久连接。有时候请求很多，6个连接也忙不过来，就涉及前端性能优化了（**面试题**）。我们怎么发请求？ajax！（*双向常用的是webscokt*）我们发请求就用到http方法，本质就是告诉服务器客户端的意图，所以这些方法也是顾名思义的。
 全部方法如下：
-![image](/images/http3_1.png)
+<!-- ![image](/images/http3_1.png) -->
 　　常用的是`get（查）`，`post（增）`，`put（改）`，`delete（删）`*restful风格*；get和post经常会被问到有什么区别（**面试题**），知乎上有很多很回答讲的很细致，我在这里只做个简单对比。
 - `get`传递参数使用`?k=v&k1&=v2`这中直接在请求链接后边加参数值的形式，有的时候需要使用`encodeURIComponent`函数转义一下字符。
 - `post`参数一般有三种`formData(qs转参数),Request Payload`和上传文件用的`multipart/form-data`
