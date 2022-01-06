@@ -26,13 +26,13 @@ isTop: false
 
 随着 Vite 的普及，前端开发者总算是可以不用在项目冷启动的时候喝杯咖啡了（不是）。**vue-components-lib-seed** 基于 `Vite vue-ts` 模板初始化，给开发者提供高效的开发速度。如图所示，冷启动在1500ms 左右：
 
-![](https://pic2.zhimg.com/v2-7bba4c629847cbd7ec4acbb089ce393d_b.png)
+![](https://pic1.zhimg.com/80/v2-499649ec7744855c00f3a8b49110f76c_1440w.jpg)
 
 构建时，vuecomponent-seed 使用 esbuild 为 Typescript 提供几乎是 tsc 上百倍的速度编译效率，极大地缩短了构建时间，默认支持按需加载构建，可以通过类 babel-plugin-import 插件实现真正意义上的按需加载。
 
 但令人遗憾的是，d.ts 的生成仍然依赖 tsc，这个速度也确实无法明显的降低。如打包单组件，包含 d.ts 整体的速度为 17.53s。如果不打包 d.ts，构建速度为惊人的 1s。
 
-![](https://pic2.zhimg.com/v2-7bba4c629847cbd7ec4acbb089ce393d_b.png)
+![](https://pic2.zhimg.com/80/v2-7bba4c629847cbd7ec4acbb089ce393d_1440w.jpg)
 
 测试采用 jest，提供单元测试。同时，开发时的各类 lint、postcss 以及 prettier 均已开箱自带。
 
@@ -40,7 +40,7 @@ isTop: false
 
 基于 vitepress，自定义了相关的样式。在继承 vitepress ssg、hmr 等功能的同时，更支持 Dark mode，支持 i18n，支持 demo 接入，支持复制 demo 代码（部署站点需支持 HTTPS）。如果，同学们有更高的自定义需求，内置的windicss是您自定义的样式的利器。
 
-![](https://pic4.zhimg.com/v2-5141621c0afa00e3966a7b717cdc8897_b.png)
+![](https://pic4.zhimg.com/80/v2-5141621c0afa00e3966a7b717cdc8897_1440w.jpg)
 
 ### 组件 demo
 
@@ -52,7 +52,7 @@ isTop: false
 
 ```
 
-![](https://pic4.zhimg.com/v2-2a848c01b15e994b73dc9b5e7e145f97_b.png)
+![](https://pic4.zhimg.com/80/v2-2a848c01b15e994b73dc9b5e7e145f97_1440w.jpg)
 
 ## 脚本
 
