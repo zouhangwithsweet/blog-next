@@ -140,7 +140,7 @@ export default defineConfig{
 
 根据其[官方文档](https://element-plus.org/#/zh-CN/component/quickstart)，配置 `Vite` 按需加载，配好的 `vite.config.ts` 如下：
 
-```javascript,ts
+```typescript
 export default defineConfig{
   // other setting...
   plugins: [
