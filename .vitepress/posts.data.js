@@ -30,7 +30,8 @@ function getPost(file, postDir, asFeed = false) {
     title: data.title,
     href: `/posts/${file.replace(/\.md$/, '.html')}`,
     date: formatDate(data.date),
-    excerpt
+    hideInList: data.hideInList,
+    excerpt,
   }
   if (asFeed) {
     // only attach these when building the RSS feed to avoid bloating the

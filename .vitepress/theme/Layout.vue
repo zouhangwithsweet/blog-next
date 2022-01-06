@@ -2,23 +2,29 @@
   <div class="antialiased">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
       <nav class="flex justify-between items-center py-10 font-bold">
-        <a class="text-xl" href="/" aria-label="The Vue Point">
+        <a class="text-xl" href="/" aria-label="zouhaha">
           <img
-            class="inline-block mr-2"
-            style="width: 36px; height: 31px"
+            class="inline-block mr-2 rounded-full"
+            style="width: 48px; height: 48px"
             alt="logo"
-            src="/logo.svg"
+            src="/logo.png"
           />
-          <span v-if="!isIndex" class="hidden md:inline">The Vue Point</span>
+          <span v-if="!isIndex" class="hidden md:inline">zouhaha</span>
         </a>
         <div class="text-base text-gray-500 leading-5">
-          <a class="hover:text-gray-700 mr-4" href="/feed.rss">RSS Feed</a>
+          <a v-show="false" class="hover:text-gray-700 mr-4" href="/feed.rss">RSS Feed</a>
+          <a
+            class="hover:text-gray-700 mr-4"
+            href="/posts/about.html"
+            rel="noopener"
+            >About</a
+          >
           <a
             class="hover:text-gray-700"
-            href="https://v3.vuejs.org"
+            href="https://github.com/zouhangwithsweet"
             target="_blank"
             rel="noopener"
-            >Vuejs.org →</a
+            >Github →</a
           >
         </div>
       </nav>

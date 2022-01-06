@@ -14,7 +14,7 @@ import { data as posts } from '../posts.data'
           text-gray-900
           tracking-tight
           sm:text-4xl sm:leading-10
-          md:text-6xl md:leading-14
+          md:text-4xl md:leading-14
         "
       >
         {{ $frontmatter.title }}
@@ -22,7 +22,7 @@ import { data as posts } from '../posts.data'
       <p class="text-lg leading-7 text-gray-500">{{ $frontmatter.subtext }}</p>
     </div>
     <ul class="divide-y divide-gray-200">
-      <li class="py-12" v-for="{ title, href, date, excerpt } of posts">
+      <li class="py-12" v-for="{ title, href, date, excerpt } of posts.filter(p => !p.hideInList)">
         <article
           class="
             space-y-2

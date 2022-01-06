@@ -5,7 +5,7 @@ const { load } = require('./posts.data')
 const url = `https://blog.vuejs.org`
 
 const feed = new Feed({
-  title: 'The Vue Point',
+  title: 'zouhang's blog',
   description: 'The offical blog for the Vue.js project',
   id: url,
   link: url,

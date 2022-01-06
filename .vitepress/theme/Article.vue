@@ -15,6 +15,7 @@ function findCurrentIndex() {
 
 // use the customData date which contains pre-resolved date info
 const date = computed(() => posts[findCurrentIndex()].date)
+const hideInList = computed(() => posts[findCurrentIndex()].hideInList)
 const nextPost = computed(() => posts[findCurrentIndex() - 1])
 const prevPost = computed(() => posts[findCurrentIndex() + 1])
 </script>
@@ -49,12 +50,13 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
       "
       style="grid-template-rows: auto 1fr"
     >
-      <Author />
+      <Author v-show="!hideInList" />
       <div class="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
         <Content class="prose max-w-none pt-10 pb-8" />
       </div>
 
       <footer
+        v-show="!hideInList"
         class="
           text-sm
           font-medium

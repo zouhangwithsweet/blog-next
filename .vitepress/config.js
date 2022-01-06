@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'The Vue Point',
+  title: 'zouhang\'s blog',
   description: 'The offical blog for the Vue.js project',
   head: [
     [
