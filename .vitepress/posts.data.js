@@ -29,7 +29,7 @@ function getPost(file, postDir, asFeed = false) {
   const post = {
     title: data.title,
     href: `/posts/${file.replace(/\.md$/, '.html')}`,
-    date: data.date ? formatDate(data.date) : '',
+    date: data.date ? formatDate(data.date) : { time: '' },
     hideInList: data.hideInList,
     excerpt,
   }

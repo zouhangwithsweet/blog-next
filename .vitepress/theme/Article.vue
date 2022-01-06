@@ -3,8 +3,8 @@ import Date from './Date.vue'
 import Author from './Author.vue'
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { data as posts } from '../posts.data'
-
+import { data as rawPosts } from '../posts.data'
+const posts = rawPosts.filter(p => !p.hideInList)
 const { frontmatter: data } = useData()
 
 const route = useRoute()
@@ -14,8 +14,8 @@ function findCurrentIndex() {
 }
 
 // use the customData date which contains pre-resolved date info
-const date = computed(() => posts[findCurrentIndex()].date)
-const hideInList = computed(() => posts[findCurrentIndex()].hideInList)
+const date = computed(() => ~findCurrentIndex() ? posts[findCurrentIndex()].date : '')
+const hideInList = computed(() => !~findCurrentIndex())
 const nextPost = computed(() => posts[findCurrentIndex() - 1])
 const prevPost = computed(() => posts[findCurrentIndex() + 1])
 </script>

@@ -1,6 +1,7 @@
 <script setup>
 import Date from './Date.vue'
-import { data as posts } from '../posts.data'
+import { data as rawPosts } from '../posts.data'
+const posts = rawPosts.filter(p => !p.hideInList)
 </script>
 
 <template>
@@ -22,7 +23,7 @@ import { data as posts } from '../posts.data'
       <p class="text-lg leading-7 text-gray-500">{{ $frontmatter.subtext }}</p>
     </div>
     <ul class="divide-y divide-gray-200">
-      <li class="py-12" v-for="{ title, href, date, excerpt } of posts.filter(p => !p.hideInList)">
+      <li class="py-12" v-for="{ title, href, date, excerpt } of posts">
         <article
           class="
             space-y-2
