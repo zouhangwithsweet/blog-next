@@ -26,13 +26,13 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
       <Date :date="date" />
       <h1
         class="
-          text-3xl
+          text-2xl
           leading-9
           font-extrabold
           text-gray-900
           tracking-tight
-          sm:text-4xl sm:leading-10
-          md:text-5xl md:leading-14
+          sm:text-3xl sm:leading-10
+          md:text-4xl md:leading-14
         "
       >
         {{ data.title }}
@@ -40,6 +40,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
     </header>
 
     <div
+      v-if="!hideInList"
       class="
         divide-y
         xl:divide-y-0
@@ -50,13 +51,12 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
       "
       style="grid-template-rows: auto 1fr"
     >
-      <Author v-show="!hideInList" />
+      <Author />
       <div class="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
         <Content class="prose max-w-none pt-10 pb-8" />
       </div>
 
       <footer
-        v-show="!hideInList"
         class="
           text-sm
           font-medium
@@ -86,5 +86,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
         </div>
       </footer>
     </div>
+
+    <Content class="prose max-w-none pt-10 pb-8" v-else />
   </article>
 </template>

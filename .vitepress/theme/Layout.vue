@@ -20,6 +20,12 @@
             >About</a
           >
           <a
+            class="hover:text-gray-700 mr-4"
+            href="/posts/shares.html"
+            rel="noopener"
+            >Shares</a
+          >
+          <a
             class="hover:text-gray-700"
             href="https://github.com/zouhangwithsweet"
             target="_blank"
