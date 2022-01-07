@@ -7,6 +7,13 @@ hideInList: false
 feature: https://www.pilishen.com/media/472/phpOvF8j6.png
 isTop: false
 ---
+
+<p align="center">
+  <img style="max-height: 240px" src="https://5b0988e595225.cdn.sohucs.com/images/20181116/a677a422791a413290810061f9d1682a.jpeg">
+</p>
+
+---
+
 > 提前熟悉 `Vue@3.0` 的主要变动
 
 1. [移除 `v-bind:title.sync="title"` 使用 `v-model:title="title"` 代替](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0005-replace-v-bind-sync-with-v-model-argument.md)

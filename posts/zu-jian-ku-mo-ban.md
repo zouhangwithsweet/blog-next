@@ -4,8 +4,14 @@ date: 2021-07-20 11:38:13
 tags: []
 published: true
 hideInList: false
-feature: 
+feature: https://pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png
 isTop: false
+---
+
+<p align="center">
+  <img style="max-height: 240px" src="https://pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png">
+</p>
+
 ---
 
 > 最近一个月的时间都在写 Vue3 组件库，踩了不少坑，总结出一个次佳模板，希望能帮助到社区。

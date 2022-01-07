@@ -4,8 +4,14 @@ date: 2021-06-05 10:01:52
 tags: []
 published: true
 hideInList: false
-feature: /post-images/vue3-element-plus-ts-vite-gou-jian-chrome-extension.jpg
+feature: https://pt-starimg.didistatic.com/static/starimg/img/Z6Qvdzm5WS1641524747870.jpg
 isTop: false
+---
+
+<p align="center">
+  <img style="max-height: 240px" src="https://pt-starimg.didistatic.com/static/starimg/img/Z6Qvdzm5WS1641524747870.jpg">
+</p>
+
 ---
 
 > 写在前面，尤大前一阵子发了一条微博，内容是 `Vite + Vue3 + TS + VScode + Volar 谁用谁知道`。好嘛，我用了，我确实知道了，我又行了，我学的动.jpg ...

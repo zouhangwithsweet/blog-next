@@ -7,8 +7,13 @@ hideInList: false
 feature: https://pt-starimg.didistatic.com/static/starimg/img/Sfcpx2Idb81617332835056.png
 isTop: false
 ---
+
+<p align="center">
+  <img style="max-height: 240px" src="https://pt-starimg.didistatic.com/static/starimg/img/Sfcpx2Idb81617332835056.png">
+</p>
+
+---
 # i18n ^-^ Internationalization
-<img src="https://pt-starimg.didistatic.com/static/starimg/img/Ga8hdFw6Fm1612491711099.png" width="400" />
 
 ## 文本的国际化
 

@@ -4,9 +4,16 @@ date: 2020-01-28 12:23:53
 tags: [vue,babel,typescript]
 published: true
 hideInList: false
-feature: http://5b0988e595225.cdn.sohucs.com/images/20181116/a677a422791a413290810061f9d1682a.jpeg
+feature: https://img1.baidu.com/it/u=4149890414,1592117719&fm=26&fmt=auto
 isTop: false
 ---
+
+<p align="center">
+  <img style="max-height: 240px" src="https://img1.baidu.com/it/u=4149890414,1592117719&fm=26&fmt=auto">
+</p>
+
+---
+
 > 2019年底，you大的 **vue3.0** 正式 release 了一个 alpha 版本。全新的 api，更强大的速度和 typescript 的支持，让人充满期待；同时，它结合了 hooks 的一系列优点，使其生态更容易从 React 等别的框架进行迁移。作为 React 和 Vue 双重粉丝，鼓掌就完事了！本文受[使用Vue 3.0做JSX(TSX)风格的组件开发](https://zhuanlan.zhihu.com/p/102668383)启发，由于原作大神并没有给出 demo ，所以只能自己尝试复制大神的思路，先写一个极其简陋的 babel-plugin 来实现 tsx + Vue。
 
 ## 搭建 vue3 + Typescript 项目工程

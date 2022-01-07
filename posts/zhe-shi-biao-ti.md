@@ -7,6 +7,13 @@ hideInList: false
 feature: /post-images/zhe-shi-biao-ti.png
 isTop: false
 ---
+
+<p align="center">
+  <img style="max-height: 240px" src="https://pt-starimg.didistatic.com/static/starimg/img/hpFo3EkBuv1641524884446.png">
+</p>
+
+---
+
 > `Vue3` 发布在即，先来一波私货[Vue3初步踩坑](http://blog.zouhaha.site/post/vue3-start)
 
 众所周知，UI 组件是现代前端框架的核心概念之一，同时伴随着社区的蓬勃发展，越来越多创建组件的方式被开发出来，给开发者带了极大的便利；层出不穷的概念，特别是`React`社区对组件的探索，开发者经历了`Mixin`，`HOC`，`render props` 再到 `hooks`；组件的抽象方式逐渐确定下来，随着`Vue3 Composition API` 的确定，两大前端框架（库）都选择`hooks`作为抽象组件的最佳方式。

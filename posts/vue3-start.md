@@ -9,7 +9,7 @@ isTop: false
 ---
 
 <p align="center">
-  <img style="height: 320px" src="https://pt-starimg.didistatic.com/static/starimg/img/6R4vYKLGXF1617332597832.png">
+  <img style="max-height: 240px" src="https://pt-starimg.didistatic.com/static/starimg/img/6R4vYKLGXF1617332597832.png">
 </p>
 
 ---
