@@ -1,7 +1,16 @@
 <script setup>
+import { ref, computed, onMounted } from 'vue'
 import Date from './Date.vue'
 import { data as rawPosts } from '../posts.data'
 const posts = rawPosts.filter(p => !p.hideInList)
+
+const isBlog = ref(false)
+
+onMounted(() => {
+  if (window?.location.href.includes('blog.zouhaha')) {
+    isBlog.value = true
+  }
+})
 </script>
 
 <template>
@@ -52,4 +61,12 @@ const posts = rawPosts.filter(p => !p.hideInList)
       </li>
     </ul>
   </div>
+
+  <ClientOnly>
+    <div v-if="isBlog" class="py-8 flex justify-center gap-1 items-center text-sm text-blue-gray-500">
+      <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备20002347</a>
+      |
+      <img style="height: 15px" src="https://visitor-badge.glitch.me/badge?page_id=b21pdGxvdmV6b3VoYW5nYnlncmlkZWE=" />
+    </div>
+  </ClientOnly>
 </template>
