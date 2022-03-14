@@ -7,7 +7,11 @@ const props = defineProps({
 })
 
 function getDateTime() {
-  return new Date(props.date.time).toISOString()
+  try {
+    return new Date(props.date.time).toISOString()
+  } catch (error) {
+    return new Date().toISOString()
+  }
 }
 </script>
 
