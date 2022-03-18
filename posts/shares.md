@@ -43,6 +43,8 @@ function goTo(e, item) {
   border-radius: 4px;
   pointer-events: none;
   user-select: none;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
