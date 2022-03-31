@@ -41,21 +41,23 @@ onMounted(() => {
         >
           <Date :date="date" />
           <div class="space-y-5 xl:col-span-3">
-            <div class="space-y-6">
-              <h2 class="text-2xl leading-8 font-bold tracking-tight">
-                <a class="text-gray-900" :href="href">{{ title }}</a>
-              </h2>
-              <div
-                v-if="excerpt"
-                class="prose max-w-none text-gray-500"
-                v-html="excerpt"
-              ></div>
-            </div>
-            <div class="text-base leading-6 font-medium">
-              <a class="link" aria-label="read more" :href="href"
-                >Read more →</a
-              >
-            </div>
+            <a :href="href">
+              <div class="space-y-6">
+                <h2 class="text-2xl leading-8 font-bold tracking-tight">
+                  <a class="text-gray-900" :href="href">{{ title }}</a>
+                </h2>
+                <div
+                  v-if="excerpt"
+                  class="prose max-w-none text-gray-500"
+                  v-html="excerpt"
+                ></div>
+              </div>
+              <div class="text-base leading-6 font-medium">
+                <a class="link" aria-label="read more" :href="href"
+                  >Read more →</a
+                >
+              </div>
+            </a>
           </div>
         </article>
       </li>
