@@ -5,10 +5,15 @@ import { data as rawPosts } from '../posts.data'
 const posts = rawPosts.filter(p => !p.hideInList)
 
 const isBlog = ref(false)
+const vercel = ref(false)
 
 onMounted(() => {
   if (window?.location.href.includes('blog.zouhaha')) {
     isBlog.value = true
+  }
+
+  if (window?.location.href.includes('vercel')) {
+    vercel.value = true
   }
 })
 </script>
@@ -29,7 +34,7 @@ onMounted(() => {
       >
         {{ $frontmatter.title }}
       </h1>
-      <p class="text-lg leading-7 text-gray-500">{{ $frontmatter.subtext }}</p>
+      <p class="flex items-center text-lg leading-7 text-gray-500">{{ $frontmatter.subtext }} <img v-if="vercel" style="height: 16px; margin-left: auto" class="!ml-3" :src="`https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog${vercel ? '.vercel' : ''}.visitor-badge`" /></p>
     </div>
     <ul class="divide-y divide-gray-200">
       <li class="py-12" v-for="{ title, href, date, excerpt } of posts">
@@ -68,7 +73,7 @@ onMounted(() => {
     <div v-if="isBlog" class="py-8 flex justify-center gap-1 items-center text-sm text-blue-gray-500">
       <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备20002347</a>
       |
-      <img style="height: 15px" src="https://visitor-badge.glitch.me/badge?page_id=b21pdGxvdmV6b3VoYW5nYnlncmlkZWE=" />
+      <img style="height: 15px" src="https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog.visitor-badge" />
     </div>
   </ClientOnly>
 </template>
