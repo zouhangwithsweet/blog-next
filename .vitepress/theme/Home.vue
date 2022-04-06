@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import Date from './Date.vue'
 import { data as rawPosts } from '../posts.data'
-const posts = rawPosts.filter(p => !p.hideInList)
+const posts = rawPosts.filter((p) => !p.hideInList)
 
 const isBlog = ref(false)
 const vercel = ref(false)
@@ -22,27 +22,27 @@ onMounted(() => {
   <div class="divide-y divide-gray-200">
     <div class="pt-6 pb-8 space-y-2 md:space-y-5">
       <h1
-        class="
-          text-3xl
-          leading-9
-          font-extrabold
-          text-gray-900
-          tracking-tight
-          sm:text-4xl sm:leading-10
-          md:text-4xl md:leading-14
-        "
+        class="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-4xl md:leading-14"
       >
         {{ $frontmatter.title }}
       </h1>
-      <p class="flex items-center text-lg leading-7 text-gray-500">{{ $frontmatter.subtext }} <img v-if="vercel" style="height: 16px; margin-left: auto" class="!ml-3" :src="`https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog${vercel ? '.vercel' : ''}.visitor-badge`" /></p>
+      <p class="flex items-center text-lg leading-7 text-gray-500">
+        {{ $frontmatter.subtext }}
+        <img
+          v-if="vercel"
+          style="height: 16px; margin-left: auto"
+          class="!ml-3 max-h-7"
+          :src="`https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog${
+            vercel ? '.vercel' : ''
+          }.visitor-badge`"
+          onerror="this.src = 'https://img.shields.io/badge/%E6%88%91%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88~%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93-%F0%9F%A5%B0-green'"
+        />
+      </p>
     </div>
     <ul class="divide-y divide-gray-200">
       <li class="py-12" v-for="{ title, href, date, excerpt } of posts">
         <article
-          class="
-            space-y-2
-            xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline
-          "
+          class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline"
         >
           <Date :date="date" />
           <div class="space-y-5 xl:col-span-3">
@@ -70,10 +70,16 @@ onMounted(() => {
   </div>
 
   <ClientOnly>
-    <div v-if="isBlog" class="py-8 flex justify-center gap-1 items-center text-sm text-blue-gray-500">
+    <div
+      v-if="isBlog"
+      class="py-8 flex justify-center gap-1 items-center text-sm text-blue-gray-500"
+    >
       <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备20002347</a>
       |
-      <img style="height: 15px" src="https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog.visitor-badge" />
+      <img
+        style="height: 15px"
+        src="https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog.visitor-badge"
+      />
     </div>
   </ClientOnly>
 </template>
