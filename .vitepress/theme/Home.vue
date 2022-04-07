@@ -6,6 +6,7 @@ const posts = rawPosts.filter((p) => !p.hideInList)
 
 const isBlog = ref(false)
 const vercel = ref(false)
+const random = Math.floor(Math.random() * 10) >= 5
 
 onMounted(() => {
   if (window?.location.href.includes('blog.zouhaha')) {
@@ -29,13 +30,20 @@ onMounted(() => {
       <p class="flex items-center text-lg leading-7 text-gray-500">
         {{ $frontmatter.subtext }}
         <img
-          v-if="vercel"
-          style="height: 16px; margin-left: auto"
+          v-if="random"
+          style="height: 20px; margin-left: auto"
           class="!ml-3 max-h-7"
           :src="`https://visitor-badge.glitch.me/badge?page_id=zouhaha.next.blog${
             vercel ? '.vercel' : ''
           }.visitor-badge`"
           onerror="this.src = 'https://img.shields.io/badge/%E6%88%91%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88~%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93-%F0%9F%A5%B0-green'"
+        />
+        <img
+          style="height: 20px; margin-left: auto"
+          class="!ml-3 max-h-7"
+          v-else
+          src="https://img.shields.io/badge/%E6%88%91%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88~%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93-%F0%9F%A5%B0-green"
+          alt=""
         />
       </p>
     </div>
