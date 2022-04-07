@@ -54,11 +54,15 @@ pre {
   opacity: 0;
   text-decoration: none;
   border: 0!important;
-  color: #48b0f1!important;
+  color: #48b0f1 !important;
 }
 
 .header-anchor:hover {
   opacity: 0.8;
+}
+
+.prose a {
+  color: #48b0f1 !important;
 }
 
 /**
