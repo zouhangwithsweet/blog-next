@@ -11,6 +11,8 @@ export default defineConfig({
         type: 'image/x-icon',
         href: '/logo.png'
       },
+    ],
+    [
       'link',
       {
         rel: 'stylesheet',
