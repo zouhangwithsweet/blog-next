@@ -3,7 +3,7 @@ import typography from 'windicss/plugin/typography'
 
 export default {
   extract: {
-    include: ['./.vitepress/theme/**/*.vue'],
+    include: ['./.vitepress/theme/**/*.vue', './posts/**/*.md'],
   },
   safelist: ['prose', 'prose-sm', 'm-auto'],
   darkMode: 'class',

@@ -8,12 +8,12 @@ isTop: false
 ---
 
 <div class="grid">
-  <div v-for="(item, index) in links">
+  <a :href="item" target="_blank" v-for="(item, index) in links">
     <div class="wrapper" @click="goTo($event, item)">
       <iframe :src="item" />
-      <div class="title"> unplugin share </div>
+      <div class="title text-center"> unplugin share </div>
     </div>
-  </div>
+  </a>
 </div>
 
 <script setup>
