@@ -10,16 +10,16 @@ isTop: false
 <div class="grid">
   <a :href="item" target="_blank" v-for="(item, index) in links">
     <div class="wrapper" @click="goTo($event, item)">
-      <iframe :src="item" />
-      <div class="title text-center"> unplugin share </div>
+      <iframe :src="item.href" />
+      <div class="title text-center">{{item.title}}</div>
     </div>
   </a>
 </div>
 
 <script setup>
 const links = [
-  'https://share-unplugin.vercel.app/1',
-  'https://share-reactive-state.vercel.app/1',
+  {href: 'https://share-unplugin.vercel.app/1', title: 'unplugin share'},
+  {href: 'https://share-reactive-state.vercel.app/1', title: 'reactive state'}
 ]
 
 function goTo(e, item) {
