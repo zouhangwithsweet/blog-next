@@ -13,13 +13,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
   <body>
     <Header title={SITE_TITLE} />
     <main>
-      <h1>🤡 Hello, It's me!</h1>
+      <h1>
+        🤡 <span
+          style="
+        background: -webkit-linear-gradient(315deg,#647eff 25%,#42d392);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent
+      "
+          >Hello, It's me!</span>
+      </h1>
       <p>中文：</p>
       <p>
         大家好，我是
         zouhangwithsweet，一个来自中国的软件工程师，目前居住在美国旧金山湾区。我的主要工作是开发和维护大型的云端应用系统。我在软件开发方面拥有多年的经验，掌握了多种编程语言，例如
-        Python、JavaScript、TypeScript 等。 除了我的职业生涯，我对人工智能也很感兴趣。我正在学习机器学习和深度学习，并在我的
-        GitHub 上分享我的学习笔记和项目，包括用于图像分类、文本分类、推荐系统等应用的模型。
+        Python、JavaScript、TypeScript 等。
+        除了我的职业生涯，我对人工智能也很感兴趣。我正在学习机器学习和深度学习，并在我的 GitHub
+        上分享我的学习笔记和项目，包括用于图像分类、文本分类、推荐系统等应用的模型。
         在我的空闲时间，我也喜欢健身和旅游。我认为健身可以帮助我保持身体健康，旅游则可以帮助我放松身心，在忙碌的工作后获得新的思路和灵感。
         感谢您花时间了解我，我期待着和您交流和合作！
       </p>
@@ -28,16 +38,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
         Hello everyone, I'm zouhangwithsweet, a software engineer from China currently living in the San Francisco Bay
         Area in the United States. My main work is developing and maintaining large-scale cloud-based application
         systems. I have many years of experience in software development and have mastered various programming
-        languages, such as Python, JavaScript, and TypeScript. In addition to my career, I am also interested in artificial
-        intelligence. I am currently learning machine learning and deep learning, and sharing my learning notes and
-        projects on my GitHub, including models for image classification, text classification, recommendation systems,
-        and more. In my free time, I also enjoy working out and traveling. I believe that working out can help me stay
-        healthy, and traveling can help me relax and gain new perspectives and inspiration after busy work. Thank you
-        for taking the time to get to know me, and I look forward to connecting and collaborating with you!
+        languages, such as Python, JavaScript, and TypeScript. In addition to my career, I am also interested in
+        artificial intelligence. I am currently learning machine learning and deep learning, and sharing my learning
+        notes and projects on my GitHub, including models for image classification, text classification, recommendation
+        systems, and more. In my free time, I also enjoy working out and traveling. I believe that working out can help
+        me stay healthy, and traveling can help me relax and gain new perspectives and inspiration after busy work.
+        Thank you for taking the time to get to know me, and I look forward to connecting and collaborating with you!
       </p>
       <em style="text-align: right; margin-left: auto; display: block; font-weight: bold;">via: ChatGPT</em>
-      <p class="underline">
-        Contact me if you have a remote job <a href="mailto:zouhangsweet@gmail.com">Send me an Email</a>.
+      <p>
+        <span
+          style="
+            font-size: 16px;
+            font-weight: bold;
+            background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+          "
+          >Contact me if you have a remote job :)</span
+        >
+        <span><a href="mailto:zouhangsweet@gmail.com">Send me an Email</a>.</span>
       </p>
     </main>
     <Footer />
