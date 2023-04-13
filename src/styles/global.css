@@ -118,3 +118,14 @@ code, code span {
 	font-family: 'Fira Code';
 	font-size: 14px;
 }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body main {
+  flex: 1;
+}
