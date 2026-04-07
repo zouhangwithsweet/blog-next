@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import Datetime from "@/components/Datetime.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+
+const posts = getSortedPosts(await getCollection("blog", ({ data }) => !data.draft));
+---
+
+<Layout title={`Blog | ${SITE.title}`}>
+  <Header />
+  <Main pageTitle="Blog" pageDesc="Legacy blog listing kept for the previous /blog routes.">
+    <ul class="space-y-6">
+      {
+        posts.map(({ id, filePath, data }) => (
+          <li>
+            <a
+              href={`/blog${getPath(id, filePath, false)}`}
+              class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              {data.title}
+            </a>
+            <Datetime {...data} />
+            <p>{data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Main>
+  <Footer />
+</Layout>

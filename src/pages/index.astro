@@ -7,16 +7,12 @@ import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
-
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
 ---
 
 <Layout>
@@ -24,77 +20,45 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <main id="main-content" data-layout="index" class="app-layout">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
+        🤡 Hello, It's me!
       </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
 
       <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
+        大家好，我是 zouhang，一个来自中国的软件工程师。目前主要从事大型应用系统的开发与维护，长期关注
+        JavaScript、TypeScript、Python、Golang、云服务和 AI 相关主题。
       </p>
-      <p class="mt-2">
-        Read the blog posts or check
-        <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
+      <p class="mt-3">
+        Hello, I'm zouhang — a software engineer from China. I build and maintain
+        large-scale applications, and I use this site to share notes about frontend,
+        engineering, cloud services, and AI.
       </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
+      <p class="mt-3">
+        如果你有合适的远程机会，欢迎
+        <a class="underline decoration-dashed underline-offset-4" href="mailto:zouhangsweet@gmail.com">给我发邮件</a>
+        。
+      </p>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-b border-border": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <span class="whitespace-nowrap">Find me:</span>
+        <Socials />
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <LinkButton href="/posts/">
+          Browse Posts
+          <IconArrowRight class="inline-block rtl:-rotate-180" />
+        </LinkButton>
+        <LinkButton href="/about/">About</LinkButton>
+        <LinkButton href="/share/">Share</LinkButton>
+      </div>
+    </section>
 
     {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
           <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
           <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
+            {recentPosts.map(data => <Card variant="h3" {...data} />)}
           </ul>
         </section>
       )
