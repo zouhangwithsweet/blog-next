@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
@@ -42,19 +41,6 @@ const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
         。
       </p>
 
-      <div class="mt-4 flex flex-wrap items-center gap-3">
-        <span class="whitespace-nowrap">Find me:</span>
-        <Socials />
-      </div>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <LinkButton href="/posts/">
-          Browse Posts
-          <IconArrowRight class="inline-block rtl:-rotate-180" />
-        </LinkButton>
-        <LinkButton href="/about/">About</LinkButton>
-        <LinkButton href="/share/">Share</LinkButton>
-      </div>
     </section>
 
     {
