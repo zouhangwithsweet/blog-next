@@ -1,0 +1,23 @@
+export const SITE = {
+  website: "https://zouhaha-blog-next.netlify.app/",
+  author: "zouhang",
+  profile: "https://github.com/zouhangwithsweet",
+  desc: "记录一个野生程序员的琐事",
+  title: "Zouhaha",
+  ogImage: "astropaper-og.jpg",
+  lightAndDarkMode: true,
+  postPerIndex: 4,
+  postPerPage: 4,
+  scheduledPostMargin: 15 * 60 * 1000,
+  showArchives: true,
+  showBackButton: true,
+  editPost: {
+    enabled: false,
+    text: "Edit page",
+    url: "",
+  },
+  dynamicOgImage: false,
+  dir: "auto",
+  lang: "zh-CN",
+  timezone: "Asia/Shanghai",
+} as const;

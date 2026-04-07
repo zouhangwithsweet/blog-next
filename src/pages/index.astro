@@ -1,61 +1,77 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header title={SITE_TITLE} />
-    <main>
-      <h1>
-        🤡 <span
-          style="
-        background: -webkit-linear-gradient(315deg,#647eff 25%,#42d392);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent
-      "
-          >Hello, It's me!</span>
+<Layout>
+  <Header />
+  <main id="main-content" data-layout="index" class="app-layout">
+    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
+      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
+        🤡 Hello, It's me!
       </h1>
-      <p>中文：</p>
+
       <p>
         大家好，我是
-        zouhang，一个来自中国的软件工程师，目前居住在中国。我的主要工作是开发和维护大型的应用系统。我在软件开发方面拥有多年的经验，掌握了多种编程语言，例如
-        JavaScript、TypeScript、Python、Golang 等。热爱分享，喜欢创造工具服务开发者。
-        除了我的职业技能，我对云服务、人工智能也很感兴趣。我正在学习云服务、AIGC 等相关的知识，并在我的 GitHub
-        上分享我的学习笔记和项目。
-        在我的空闲时间，我也喜欢健身和旅游。我认为健身可以帮助我保持身体健康，旅游则可以帮助我放松身心，在忙碌的工作后获得新的思路和灵感。
-        感谢您花时间了解我，我期待着和您交流和合作！
+        zouhang，一个来自中国的软件工程师。目前主要从事大型应用系统的开发与维护，长期关注
+        JavaScript、TypeScript、Python、Golang、云服务和 AI 相关主题。
       </p>
-      <p>English:</p>
-      <p>
-        Hello everyone,I'm zouhang, a software engineer from China currently residing in China. My primary work involves developing and maintaining large-scale application systems. With years of experience in software development, I'm proficient in various programming languages such as JavaScript, TypeScript, Python, and Golang. I have a passion for sharing knowledge and enjoy creating tools to serve developers.
-Apart from my professional skills, I have a keen interest in cloud services and artificial intelligence. I'm currently learning about cloud services, AIGC, and related topics, and I share my study notes and projects on my GitHub.
-During my leisure time, I also enjoy fitness and traveling. I believe fitness helps me maintain physical health, while traveling helps me relax and gain new perspectives and inspiration after busy work schedules.
-Thank you for taking the time to learn about me. I look forward to communicating and collaborating with you!
+      <p class="mt-3">
+        Hello, I'm zouhang — a software engineer from China. I build and
+        maintain large-scale applications, and I use this site to share notes
+        about frontend, engineering, cloud services, and AI.
       </p>
-      <em style="text-align: right; margin-left: auto; display: block; font-weight: bold;">via: ChatGPT</em>
-      <p>
-        <span
-          style="
-            font-size: 16px;
-            font-weight: bold;
-            background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent
-          "
-          >Contact me if you have a remote job :)</span
+      <p class="mt-3">
+        如果你有合适的远程机会，欢迎
+        <a
+          class="underline decoration-dashed underline-offset-4"
+          href="mailto:zouhangsweet@gmail.com">给我发邮件</a
         >
-        <span><a href="mailto:zouhangsweet@gmail.com">Send me an Email</a>.</span>
+        。
       </p>
-    </main>
-    <Footer />
-  </body>
-</html>
+
+    </section>
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+          <ul>
+            {recentPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="my-8 text-center">
+      <LinkButton href="/posts/">
+        All Posts
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset?.layout;
+    if (indexLayout) {
+      sessionStorage.setItem("backUrl", "/");
+    }
+  });
+</script>

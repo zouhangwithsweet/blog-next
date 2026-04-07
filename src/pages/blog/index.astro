@@ -1,54 +1,41 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import Datetime from "@/components/Datetime.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-).reverse();
+const posts = getSortedPosts(
+  await getCollection("blog", ({ data }) => !data.draft)
+);
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      ul {
-        list-style-type: none;
-        padding: unset;
+<Layout title={`Blog | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle="Blog"
+    pageDesc="Legacy blog listing kept for the previous /blog routes."
+  >
+    <ul class="space-y-6">
+      {
+        posts.map(({ id, filePath, data }) => (
+          <li>
+            <a
+              href={`/blog${getPath(id, filePath, false)}`}
+              class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              {data.title}
+            </a>
+            <Datetime {...data} />
+            <p>{data.description}</p>
+          </li>
+        ))
       }
-      ul li {
-        display: flex;
-      }
-      ul li :global(time) {
-        flex: 0 0 130px;
-        font-style: italic;
-        color: #595959;
-      }
-      ul li a:visited {
-        color: #8e32dc;
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <section>
-        <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <FormattedDate date={post.data.pubDate} />
-                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+    </ul>
+  </Main>
+  <Footer />
+</Layout>
