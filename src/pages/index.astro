@@ -24,17 +24,21 @@ const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
       </h1>
 
       <p>
-        大家好，我是 zouhang，一个来自中国的软件工程师。目前主要从事大型应用系统的开发与维护，长期关注
+        大家好，我是
+        zouhang，一个来自中国的软件工程师。目前主要从事大型应用系统的开发与维护，长期关注
         JavaScript、TypeScript、Python、Golang、云服务和 AI 相关主题。
       </p>
       <p class="mt-3">
-        Hello, I'm zouhang — a software engineer from China. I build and maintain
-        large-scale applications, and I use this site to share notes about frontend,
-        engineering, cloud services, and AI.
+        Hello, I'm zouhang — a software engineer from China. I build and
+        maintain large-scale applications, and I use this site to share notes
+        about frontend, engineering, cloud services, and AI.
       </p>
       <p class="mt-3">
         如果你有合适的远程机会，欢迎
-        <a class="underline decoration-dashed underline-offset-4" href="mailto:zouhangsweet@gmail.com">给我发邮件</a>
+        <a
+          class="underline decoration-dashed underline-offset-4"
+          href="mailto:zouhangsweet@gmail.com">给我发邮件</a
+        >
         。
       </p>
 
@@ -58,7 +62,9 @@ const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
         <section id="recent-posts" class="pt-12 pb-6">
           <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
           <ul>
-            {recentPosts.map(data => <Card variant="h3" {...data} />)}
+            {recentPosts.map(data => (
+              <Card variant="h3" {...data} />
+            ))}
           </ul>
         </section>
       )

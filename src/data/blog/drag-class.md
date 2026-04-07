@@ -1,13 +1,13 @@
 ---
 author: zouhang
 pubDatetime: 2018-04-24T16:50:54
-title: 拖拽类，一段代码的进化史
+title: "拖拽类，一段代码的进化史"
 featured: false
 draft: false
 tags:
   - javascript
   - drag-drop
-description: [js/ES6,prototype/class]
+description: "[js/ES6, prototype/class]"
 ---
 
 > 最开始学习面向对象编写代码的时候，自己是个菜鸡，2018 年了，还是个菜鸡，废话不多说。当年面向对象写法的第一个示例就是实现一个拖拽的类的编写，使用的是构造函数的 prototype 属性，为实例对象提供方法。最近的工作也是和拖拽类打交道，这段代码也逐渐的进化并应用到多个使用场景，也从 prototype 的写法进化为 ES6 class。
@@ -18,43 +18,43 @@ es5 prototype 的写法大概是这样的
 
 ```javascript
 function Drag(id) {
-  var _this = this
-  this.disx = 0
-  this.disy = 0
-  this.oDiv = document.getElementById(id)
+  var _this = this;
+  this.disx = 0;
+  this.disy = 0;
+  this.oDiv = document.getElementById(id);
   this.oDiv.onmousedown = function (ev) {
-    _this.fnDown(ev)
+    _this.fnDown(ev);
     // 阻止冒泡
-    return false
-  }
+    return false;
+  };
 }
 // 点击
 Drag.prototype.fnDown = function (ev) {
-  var _this = this
+  var _this = this;
   // 兼容IE
-  var oev = ev || event
+  var oev = ev || event;
   // 记录点击位置到元素上边和左边的距离
-  this.disx = oev.clientX - this.oDiv.offsetLeft
-  this.disy = oev.clientY - this.oDiv.offsetTop
+  this.disx = oev.clientX - this.oDiv.offsetLeft;
+  this.disy = oev.clientY - this.oDiv.offsetTop;
   document.onmousemove = function (ev) {
-    _this.fnMove(ev)
-  }
+    _this.fnMove(ev);
+  };
   document.onmouseup = function (ev) {
-    _this.fnUp(ev)
-  }
-}
+    _this.fnUp(ev);
+  };
+};
 // 移动
 Drag.prototype.fnMove = function (ev) {
-  var oev = ev || event
+  var oev = ev || event;
   // 计算坐标的差值
-  this.oDiv.style.left = oev.clientX - this.disx + 'px'
-  this.oDiv.style.top = oev.clientY - this.disy + 'px'
-}
+  this.oDiv.style.left = oev.clientX - this.disx + "px";
+  this.oDiv.style.top = oev.clientY - this.disy + "px";
+};
 // 销毁绑定事件
 Drag.prototype.fnUp = function () {
-  document.onmousemove = null
-  document.onmouseup = null
-}
+  document.onmousemove = null;
+  document.onmouseup = null;
+};
 ```
 
 有几个注意点
@@ -68,49 +68,49 @@ Drag.prototype.fnUp = function () {
 ```javascript
 class Drag {
   constructor(el) {
-    this.el = el
+    this.el = el;
     // 拖拽信息
-    this.mouse = {}
-    this.mouse.init = false
-    this.init()
-    this.initDrag()
+    this.mouse = {};
+    this.mouse.init = false;
+    this.init();
+    this.initDrag();
   }
 
   //绝对定位初始化
   init() {
-    this.el.style.position = 'absolute'
-    this.el.style.top = `${this.el.offsetTop}px`
-    this.el.style.left = `${this.el.offsetLeft}px`
+    this.el.style.position = "absolute";
+    this.el.style.top = `${this.el.offsetTop}px`;
+    this.el.style.left = `${this.el.offsetLeft}px`;
   }
 
   // 拖动初始化
   initDrag() {
-    this.el.addEventListener('mousedown', (e) => {
-      if (/input|textarea/.test(e.target.tagName.toLowerCase())) return
-      this.mouse.init = true
-      this.mouse.offsetX = e.pageX - this.el.offsetLeft
-      this.mouse.offsetY = e.pageY - this.el.offsetTop
+    this.el.addEventListener("mousedown", e => {
+      if (/input|textarea/.test(e.target.tagName.toLowerCase())) return;
+      this.mouse.init = true;
+      this.mouse.offsetX = e.pageX - this.el.offsetLeft;
+      this.mouse.offsetY = e.pageY - this.el.offsetTop;
       // 建立一个函数引用，进行销毁
-      this.moveHandler = this.move.bind(this)
-      this.upHanler = this.up.bind(this)
-      window.addEventListener('mousemove', this.moveHandler)
-      window.addEventListener('mouseup', this.upHanler)
-    })
+      this.moveHandler = this.move.bind(this);
+      this.upHanler = this.up.bind(this);
+      window.addEventListener("mousemove", this.moveHandler);
+      window.addEventListener("mouseup", this.upHanler);
+    });
   }
   // 拖动
   move(e) {
     if (!this.mouse.init) {
-      return
+      return;
     }
-    this.el.style.left = e.pageX - this.mouse.offsetX + 'px'
-    this.el.style.top = e.pageY - this.mouse.offsetY + 'px'
+    this.el.style.left = e.pageX - this.mouse.offsetX + "px";
+    this.el.style.top = e.pageY - this.mouse.offsetY + "px";
   }
   // 松开
   up() {
-    this.mouse.init = false
-    console.log('ok')
-    window.removeEventListener('mousemove', this.moveHandler)
-    window.removeEventListener('mouseup', this.upHanler)
+    this.mouse.init = false;
+    console.log("ok");
+    window.removeEventListener("mousemove", this.moveHandler);
+    window.removeEventListener("mouseup", this.upHanler);
   }
 }
 ```
@@ -129,8 +129,8 @@ class Drag {
 
 ```javascript
 // 建立一个函数引用，进行销毁
-this.moveHandler = this.move.bind(this)
-this.upHanler = this.up.bind(this)
+this.moveHandler = this.move.bind(this);
+this.upHanler = this.up.bind(this);
 ```
 
 **原因是因为每调用一次`Function.bind`就会创建一个新的函数**，直接调用  
@@ -139,13 +139,13 @@ this.upHanler = this.up.bind(this)
 
 ```javascript
 function a() {
-  console.log(1)
+  console.log(1);
 }
 
-let b = a.bind(null)
-let c = a.bind(null)
-b == a //false
-c == b //false
+let b = a.bind(null);
+let c = a.bind(null);
+b == a; //false
+c == b; //false
 ```
 
 **ES5 中，坚持一个原则：this 永远指向最后调用它的那个对象！！！**  
@@ -164,33 +164,33 @@ c == b //false
 
 ```javascript
 export default {
-  name: 'drag',
+  name: "drag",
   bind: function (el) {
-    var offsetX = 0
-    var offsetY = 0
+    var offsetX = 0;
+    var offsetY = 0;
 
     function move(e) {
-      el.style.left = e.pageX - offsetX + 'px'
-      el.style.top = e.pageY - offsetY + 'px'
+      el.style.left = e.pageX - offsetX + "px";
+      el.style.top = e.pageY - offsetY + "px";
     }
 
     function up() {
-      window.removeEventListener('mousemove', move)
-      window.removeEventListener('mouseup', up)
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mouseup", up);
     }
 
     function down(e) {
-      if (/input|textarea/.test(e.target.tagName.toLowerCase())) return
+      if (/input|textarea/.test(e.target.tagName.toLowerCase())) return;
 
-      offsetX = e.pageX - el.offsetLeft
-      offsetY = e.pageY - el.offsetTop
-      window.addEventListener('mousemove', move)
-      window.addEventListener('mouseup', up)
+      offsetX = e.pageX - el.offsetLeft;
+      offsetY = e.pageY - el.offsetTop;
+      window.addEventListener("mousemove", move);
+      window.addEventListener("mouseup", up);
     }
 
-    el.addEventListener('mousedown', down)
+    el.addEventListener("mousedown", down);
   },
-}
+};
 ```
 
 - 结合`iscroll5`实现拖拽滚动，`better-scroll`应该也可以

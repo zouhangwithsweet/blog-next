@@ -1,14 +1,14 @@
 ---
 author: zouhang
 pubDatetime: 2022-03-29T11:55:51
-title: 关于加强对 Tailwind CSS 的研究与思考
+title: "关于加强对 Tailwind CSS 的研究与思考"
 featured: false
 draft: false
 tags:
   - tailwindcss
   - css
 ogImage: https://tailwindcss.com/_next/static/media/tailwindui-small@75.8bb955b2.jpg
-description: atom css
+description: "atom css"
 ---
 
 ## 背景

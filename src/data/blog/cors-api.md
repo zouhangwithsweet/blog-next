@@ -1,13 +1,13 @@
 ---
 author: zouhang
 pubDatetime: 2018-03-12T11:49:26
-title: 关于第三方API跨域那些事
+title: "关于第三方API跨域那些事"
 featured: false
 draft: false
 tags:
   - cors
   - web
-description: cors
+description: "cors"
 ---
 
 我们在项目开发中，使用第三方接口难免会遇到一些跨域问题，而跨域这个话题网上已经讨论了无数遍了。常用的有：
@@ -40,30 +40,30 @@ description: cors
 
 ```javascript
 module.exports = {
-  '/api/now': 'https://www.v2ex.com/api/topics/latest.json',
-  '/api/hot': 'https://www.v2ex.com/api/topics/hot.json',
-  '/api/node': 'https://www.v2ex.com/api/nodes/show.json',
-  '/api/userinfo': 'https://www.v2ex.com/api/members/show.json',
-  '/api/replies': 'https://www.v2ex.com/api/replies/show.json',
-  '/api/topics': 'https://www.v2ex.com/api/topics/show.json',
-}
+  "/api/now": "https://www.v2ex.com/api/topics/latest.json",
+  "/api/hot": "https://www.v2ex.com/api/topics/hot.json",
+  "/api/node": "https://www.v2ex.com/api/nodes/show.json",
+  "/api/userinfo": "https://www.v2ex.com/api/members/show.json",
+  "/api/replies": "https://www.v2ex.com/api/replies/show.json",
+  "/api/topics": "https://www.v2ex.com/api/topics/show.json",
+};
 ```
 
 这里我重新定义了接口的名称，你可以把他任意定为你想要的名字。接下来准备一个`server.js`，也就是我们服务端的主文件：
 
 ```javascript
-const express = require('express')
-const path = require('path')
-const axios = require('axios')
-const app = express()
+const express = require("express");
+const path = require("path");
+const axios = require("axios");
+const app = express();
 // 引入第三方路由
-const proxyConf = require('./config/proxy')
+const proxyConf = require("./config/proxy");
 const headerConf = {
-  referer: 'https://www.v2ex.com',
-  host: 'www.v2ex.com',
-}
+  referer: "https://www.v2ex.com",
+  host: "www.v2ex.com",
+};
 
-let apiRoutes = express.Router()
+let apiRoutes = express.Router();
 
 for (let k in proxyConf) {
   app.get(k, function (req, res) {
@@ -72,22 +72,22 @@ for (let k in proxyConf) {
         headers: headerConf,
         params: req.query,
       })
-      .then((response) => {
-        res.setHeader('Access-Control-Allow-Origin', '*')
-        res.json(response.data)
+      .then(response => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.json(response.data);
       })
-      .catch((e) => {
-        console.log(e)
-      })
-  })
+      .catch(e => {
+        console.log(e);
+      });
+  });
 }
 
-app.use('/', apiRoutes)
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use("/", apiRoutes);
+app.use(express.static(path.join(__dirname, "dist")));
 
-const port = process.env.PORT || 5000
-app.listen(port)
-console.log('server started ' + port)
+const port = process.env.PORT || 5000;
+app.listen(port);
+console.log("server started " + port);
 ```
 
 执行`node server.js`

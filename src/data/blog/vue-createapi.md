@@ -1,19 +1,20 @@
 ---
 author: zouhang
 pubDatetime: 2020-03-05T10:44:44
-title: vue-create-api 源码分析
+title: "vue-create-api 源码分析"
 featured: false
 draft: false
 tags:
   - vue
   - source-code
 ogImage: https://pt-starimg.didistatic.com/static/starimg/img/4Pl6t46Lgf1617332605170.png
-description: vue core
+description: "vue core"
 ---
 
 > `vue-create-api` 是 `cube-ui` 的内置库，笔者有幸提过`pr`，且对这个单独库有较多的实践，深感此库的使用价值，代码设计也比较巧妙，故作此文，加深记忆
 
 先看一下，整体的文件结构，非常清晰
+
 <!-- ![](http://blog.zouhaha.site/post-images/1583377921601.png) -->
 
 ### 入口 index.js
@@ -23,17 +24,17 @@ description: vue core
 ```js
 Vue.createAPI = function (Component, events, single) {
   if (isBoolean(events)) {
-    single = events
-    events = []
+    single = events;
+    events = [];
   }
-  const api = apiCreator.call(this, Component, events, single)
+  const api = apiCreator.call(this, Component, events, single);
   const createName = processComponentName(Component, {
     componentPrefix,
     apiPrefix,
-  })
-  Vue.prototype[createName] = Component.$create = api.create
-  return api
-}
+  });
+  Vue.prototype[createName] = Component.$create = api.create;
+  return api;
+};
 ```
 
 createAPI 的 interface 如下，可发现，他接受一个 VueComponent, 可选参数 events, 和是否单例 single（默认单例）
@@ -120,58 +121,64 @@ export interface createFunction<V extends Vue> {
 
 ```js
 function createComponent(renderData, renderFn, options, single) {
-  beforeHooks.forEach((before) => {
-    before(renderData, renderFn, single)
-  })
+  beforeHooks.forEach(before => {
+    before(renderData, renderFn, single);
+  });
   // 记录所有者组件 uid 这个是由 Vue 自己生成的
-  const ownerInsUid = options.parent ? options.parent._uid : -1
+  const ownerInsUid = options.parent ? options.parent._uid : -1;
   // 用外部变量单例， 其实是外层的函数 apiCreator 的闭包变量
-  const { comp, ins } = singleMap[ownerInsUid] ? singleMap[ownerInsUid] : {}
+  const { comp, ins } = singleMap[ownerInsUid] ? singleMap[ownerInsUid] : {};
   if (single && comp && ins) {
-    ins.updateRenderData(renderData, renderFn)
-    ins.$forceUpdate()
-    currentSingleComp = comp
-    return comp
+    ins.updateRenderData(renderData, renderFn);
+    ins.$forceUpdate();
+    currentSingleComp = comp;
+    return comp;
   }
-  const component = instantiateComponent(Vue, Component, renderData, renderFn, options)
-  const instance = component.$parent
-  const originRemove = component.remove
+  const component = instantiateComponent(
+    Vue,
+    Component,
+    renderData,
+    renderFn,
+    options
+  );
+  const instance = component.$parent;
+  const originRemove = component.remove;
 
   // 定义 remove 方法
   component.remove = function () {
     if (single) {
       if (!singleMap[ownerInsUid]) {
-        return
+        return;
       }
-      singleMap[ownerInsUid] = null
+      singleMap[ownerInsUid] = null;
     }
-    originRemove && originRemove.call(this)
-    instance.destroy()
-  }
+    originRemove && originRemove.call(this);
+    instance.destroy();
+  };
 
   // 定义 show 方法
-  const originShow = component.show
+  const originShow = component.show;
   component.show = function () {
-    originShow && originShow.call(this)
-    return this
-  }
+    originShow && originShow.call(this);
+    return this;
+  };
 
   // 定义 hide 方法
-  const originHide = component.hide
+  const originHide = component.hide;
   component.hide = function () {
-    originHide && originHide.call(this)
-    return this
-  }
+    originHide && originHide.call(this);
+    return this;
+  };
 
   // apiCreator 的闭包变量 singleMap ，currentSingleComp
   if (single) {
     singleMap[ownerInsUid] = {
       comp: component,
       ins: instance,
-    }
-    currentSingleComp = comp
+    };
+    currentSingleComp = comp;
   }
-  return component
+  return component;
 }
 ```
 
@@ -180,42 +187,48 @@ function createComponent(renderData, renderFn, options, single) {
 使用 `new Vue` 来构造一个组件包裹实例，然后 `mount` 到 `body` 最底部
 
 ```js
-export default function instantiateComponent(Vue, Component, data, renderFn, options) {
-  let renderData
-  let childrenRenderFn
+export default function instantiateComponent(
+  Vue,
+  Component,
+  data,
+  renderFn,
+  options
+) {
+  let renderData;
+  let childrenRenderFn;
 
   const instance = new Vue({
     ...options,
     render(createElement) {
-      let children = childrenRenderFn && childrenRenderFn(createElement)
+      let children = childrenRenderFn && childrenRenderFn(createElement);
       if (children && !Array.isArray(children)) {
-        children = [children]
+        children = [children];
       }
 
-      return createElement(Component, { ...renderData }, children || [])
+      return createElement(Component, { ...renderData }, children || []);
     },
     methods: {
       init() {
-        document.body.appendChild(this.$el)
+        document.body.appendChild(this.$el);
       },
       destroy() {
-        this.$destroy()
-        document.body.removeChild(this.$el)
+        this.$destroy();
+        document.body.removeChild(this.$el);
       },
     },
-  })
+  });
   instance.updateRenderData = function (data, render) {
-    renderData = data
-    childrenRenderFn = render
-  }
-  instance.updateRenderData(data, renderFn)
-  instance.$mount()
-  instance.init()
-  const component = instance.$children[0]
+    renderData = data;
+    childrenRenderFn = render;
+  };
+  instance.updateRenderData(data, renderFn);
+  instance.$mount();
+  instance.init();
+  const component = instance.$children[0];
   component.$updateProps = function (props) {
-    Object.assign(renderData.props, props)
-    instance.$forceUpdate()
-  }
-  return component
+    Object.assign(renderData.props, props);
+    instance.$forceUpdate();
+  };
+  return component;
 }
 ```

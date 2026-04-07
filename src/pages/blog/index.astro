@@ -9,12 +9,17 @@ import getSortedPosts from "@/utils/getSortedPosts";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 
-const posts = getSortedPosts(await getCollection("blog", ({ data }) => !data.draft));
+const posts = getSortedPosts(
+  await getCollection("blog", ({ data }) => !data.draft)
+);
 ---
 
 <Layout title={`Blog | ${SITE.title}`}>
   <Header />
-  <Main pageTitle="Blog" pageDesc="Legacy blog listing kept for the previous /blog routes.">
+  <Main
+    pageTitle="Blog"
+    pageDesc="Legacy blog listing kept for the previous /blog routes."
+  >
     <ul class="space-y-6">
       {
         posts.map(({ id, filePath, data }) => (
